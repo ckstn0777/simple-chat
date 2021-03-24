@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "lib": ["ES2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "strict": true, // 타입체킹 엄격히
+    "resolveJsonModule": true, // json import시 필요
+    "baseUrl": "src",
+    "outDir": "./build"
+  }
+}
