@@ -1,26 +1,18 @@
-import Fastify, { FastifyInstance } from 'fastify';
-import apiRoute from './routes/api';
+import User from './entity/User';
+import { createConnection } from 'typeorm';
+import Server from './Server';
 
-export default class Server {
-  server: FastifyInstance = Fastify({ logger: true });
+createConnection()
+  .then(async (connection) => {
+    // const server = new Server();
+    // await server.start();
 
-  constructor() {
-    this.setup();
-  }
+    const user = new User();
+    user.firstName = 'Timber';
+    user.lastName = 'Saw';
+    user.age = 25;
 
-  setup() {
-    // this.app.register(cookie)
-    // this.app.register(jwtPlugin)
-    this.server.register(apiRoute, { prefix: '/api' });
-  }
-
-  start() {
-    try {
-      this.server.listen(3000);
-    } catch (err) {
-      this.server.log.error(err);
-    }
-  }
-}
-
-new Server().start();
+    const userRepository = connection.getRepository(User);
+    await userRepository.save(user);
+  })
+  .catch((error) => console.log(error));

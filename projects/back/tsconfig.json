@@ -8,6 +8,9 @@
     "target": "es5",
     "strict": true, // 타입체킹 엄격히
     "resolveJsonModule": true, // json import시 필요
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
     "baseUrl": "src",
     "outDir": "./build"
   }
