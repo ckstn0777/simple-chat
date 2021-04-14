@@ -1,6 +1,8 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import apiRoute from './routes/api';
 
+const PORT = parseInt(process.env.PORT as string);
+
 export default class Server {
   server: FastifyInstance = Fastify({ logger: true });
 
@@ -15,11 +17,7 @@ export default class Server {
   }
 
   start() {
-    return this.server.listen(3000);
-    // try {
-    //   this.server.listen(3000);
-    // } catch (err) {
-    //   this.server.log.error(err);
-    // }
+    this.server.log.info(`Server is running with port ${PORT}`);
+    return this.server.listen(PORT || 3000);
   }
 }
