@@ -5,7 +5,7 @@ import User from './User';
   name: 'social_accounts',
 })
 @Index(['provider', 'social_id'])
-export class SocialAccount {
+export default class SocialAccount {
   @PrimaryGeneratedColumn()
   id!: number;
 

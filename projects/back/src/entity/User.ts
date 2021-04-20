@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn } from 'typeorm';
+import { generateToken } from 'lib/token/jwt';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Index,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'users',
@@ -28,4 +35,16 @@ export default class User {
   @Index()
   @Column()
   is_certified!: boolean;
+
+  async generateToken() {
+    return generateToken(
+      {
+        subject: 'accessToken',
+        userId: this.id,
+      },
+      {
+        expiresIn: '15d', // TODO: Set this to 3days later on
+      },
+    );
+  }
 }
