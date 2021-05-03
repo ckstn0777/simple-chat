@@ -115,6 +115,11 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
         if (exists) {
           const user = exists.user;
           const accessToken = await user.generateToken();
+          reply.setCookie('access_token', accessToken, {
+            path: '/',
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 15,
+          });
           reply.send({
             user: user,
             access_token: accessToken,
@@ -164,6 +169,7 @@ const authRoute: FastifyPluginCallback = (fastify, opts, done) => {
       }
     },
   );
+
   done();
 };
 
