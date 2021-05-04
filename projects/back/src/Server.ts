@@ -1,7 +1,7 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import apiRoute from './routes/api';
 import cookie from 'fastify-cookie';
-import jwtPlugin from 'lib/token/plugin';
+import jwtPlugin from 'plugins/jwtPlugin';
 
 const PORT = parseInt(process.env.PORT as string);
 

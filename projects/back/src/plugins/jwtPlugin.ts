@@ -1,6 +1,6 @@
 import { FastifyPluginCallback } from 'fastify';
 import fp from 'fastify-plugin';
-import { decodeToken } from './jwt';
+import { decodeToken } from '../lib/token/jwt';
 
 const callback: FastifyPluginCallback = async (fastify, opts, done) => {
   fastify.decorateRequest('user', null);
@@ -11,7 +11,6 @@ const callback: FastifyPluginCallback = async (fastify, opts, done) => {
       request.user = {
         id: decoded.userId,
       };
-      console.log(decoded);
     } catch (e) {}
   });
   done();
